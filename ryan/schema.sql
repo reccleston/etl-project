@@ -5,6 +5,7 @@ create table subways (
     zipcode int,
     line varchar,
     notes varchar
+    foreign key (zipcode) references zipcodes
 );
 
 create table zipcodes (
@@ -15,4 +16,8 @@ create table zipcodes (
 create table boroughs (
     id serial primary key,
     borough varchar
+);
+
+create table complaints (
+
 );
