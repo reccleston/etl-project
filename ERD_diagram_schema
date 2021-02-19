@@ -1,0 +1,63 @@
+Boroughs
+-
+boroughID PK int
+borough VARCHAR
+
+Zipcode
+-
+zipcodeID serial PK
+zipcode int
+
+Complaints
+-
+unique_key PK int
+created_date VARCHAR
+closed_date VARCHAR
+agency VARCHAR
+agency_name VARCHAR
+complaint_type VARCHAR
+descriptor VARCHAR
+zipcodeID int FK >- Zipcode.zipcodeID
+cross_street_1 VARCHAR
+cross_street_2 VARCHAR
+city VARCHAR
+resolution_description VARCHAR
+updated_date VARCHAR
+community_board VARCHAR
+boroughID int FK >- Boroughs.boroughID
+channel VARCHAR
+latitude float
+longitude float
+location VARCHAR
+location_type VARCHAR
+incident_address VARCHAR
+street_name VARCHAR
+
+Subway
+-
+stationID PK int
+stationname varchar
+address varchar
+zipcodeID int FK >- Zipcode.zipcodeID
+line varchar
+
+Housing
+- 
+housing_id Serial PK
+address varchar
+building_name varchar
+neighborhood varchar
+boroughID int FK >- Boroughs.boroughID
+ppsf float
+bed int
+full_bath int
+half_bath int 
+sq_ft int
+property_type varchar
+days_on_market int
+listed_date varchar
+listed_price float
+sold_price float
+sold_date varchar
+zipcodeID int FK >- Zipcode.zipcodeID
+year_built int

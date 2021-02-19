@@ -1,0 +1,97 @@
+
+
+
+CREATE TABLE "Boroughs" (
+    "boroughID" int   NOT NULL,
+    "borough" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_Boroughs" PRIMARY KEY (
+        "boroughID"
+     )
+);
+
+CREATE TABLE "Zipcode" (
+    "zipcodeID" serial   NOT NULL,
+    "zipcode" int   NOT NULL,
+    CONSTRAINT "pk_Zipcode" PRIMARY KEY (
+        "zipcodeID"
+     )
+);
+
+CREATE TABLE "Complaints" (
+    "unique_key" int   NOT NULL,
+    "created_date" VARCHAR   NOT NULL,
+    "closed_date" VARCHAR   NOT NULL,
+    "agency" VARCHAR   NOT NULL,
+    "agency_name" VARCHAR   NOT NULL,
+    "complaint_type" VARCHAR   NOT NULL,
+    "descriptor" VARCHAR   NOT NULL,
+    "zipcodeID" int   NOT NULL,
+    "cross_street_1" VARCHAR   NOT NULL,
+    "cross_street_2" VARCHAR   NOT NULL,
+    "city" VARCHAR   NOT NULL,
+    "resolution_description" VARCHAR   NOT NULL,
+    "updated_date" VARCHAR   NOT NULL,
+    "community_board" VARCHAR   NOT NULL,
+    "boroughID" int   NOT NULL,
+    "channel" VARCHAR   NOT NULL,
+    "latitude" float   NOT NULL,
+    "longitude" float   NOT NULL,
+    "location" VARCHAR   NOT NULL,
+    "location_type" VARCHAR   NOT NULL,
+    "incident_address" VARCHAR   NOT NULL,
+    "street_name" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_Complaints" PRIMARY KEY (
+        "unique_key"
+     )
+);
+
+CREATE TABLE "Subway" (
+    "stationID" int   NOT NULL,
+    "stationname" varchar   NOT NULL,
+    "address" varchar   NOT NULL,
+    "zipcodeID" int   NOT NULL,
+    "line" varchar   NOT NULL,
+    "notes" varchar   NOT NULL,
+    CONSTRAINT "pk_Subway" PRIMARY KEY (
+        "stationID"
+     )
+);
+
+CREATE TABLE "Housing" (
+    "housing_id" Serial   NOT NULL,
+    "address" varchar   NOT NULL,
+    "building_name" varchar   NOT NULL,
+    "neighborhood" varchar   NOT NULL,
+    "ppsf" float   NOT NULL,
+    "bed" int   NOT NULL,
+    "full_bath" int   NOT NULL,
+    "half_bath" int   NOT NULL,
+    "sq_feet" int   NOT NULL,
+    "monthly_fees_taxes" float   NOT NULL,
+    "monthly_taxes" float   NOT NULL,
+    "property_type" varchar   NOT NULL,
+    "days_on_market" int   NOT NULL,
+    "listed_date" float   NOT NULL,
+    "listed_price" float   NOT NULL,
+    "sold_price" float   NOT NULL,
+    "sold_date" float   NOT NULL,
+    "zipcodeID" int   NOT NULL,
+    "outdoor_space" varchar   NOT NULL,
+    "year_built" int   NOT NULL,
+    CONSTRAINT "pk_Housing" PRIMARY KEY (
+        "housing_id"
+     )
+);
+
+ALTER TABLE "Complaints" ADD CONSTRAINT "fk_Complaints_zipcodeID" FOREIGN KEY("zipcodeID")
+REFERENCES "Zipcode" ("zipcodeID");
+
+ALTER TABLE "Complaints" ADD CONSTRAINT "fk_Complaints_boroughID" FOREIGN KEY("boroughID")
+REFERENCES "Boroughs" ("boroughID");
+
+ALTER TABLE "Subway" ADD CONSTRAINT "fk_Subway_zipcodeID" FOREIGN KEY("zipcodeID")
+REFERENCES "Zipcode" ("zipcodeID");
+
+ALTER TABLE "Housing" ADD CONSTRAINT "fk_Housing_zipcodeID" FOREIGN KEY("zipcodeID")
+REFERENCES "Zipcode" ("zipcodeID");
+
